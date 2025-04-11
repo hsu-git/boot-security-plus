@@ -8,23 +8,21 @@
     <title>시큐리티 실습</title>
 </head>
 <body>
-    <h2>로그인</h2>
-    <form th:action="@{/login}" method="post">
-        <section>
-            <label>
-
-            </label>
-            <label>
-                <input name="username" required>
-            </label>
-        </section>
-        <section>
-            <label>
-                <input type="password" th:name="password" required>
-            </label>
-        </section>
-        <button>로그인</button>
-    </form>
-    <section><a th:href="@{/join}">회원가입</a></section>
+<h2>회원가입</h2>
+<p th:text="${error}"></p>
+<form th:action="@{/join}" method="post">
+    <section>
+        <label>
+            유저이름 : <input th:name="username" required>
+        </label>
+    </section>
+    <section>
+        <label>
+            비밀번호 : <input type="password" th:name="password" required>
+        </label>
+    </section>
+    <button>가입</button>
+</form>
+<section><a th:href="@{/login}">로그인</a></section>
 </body>
 </html>

@@ -8,20 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("msg", "환영합니다!");
+        model.addAttribute("msg", "환영합니다");
         return "index";
     }
 
-//    admin 페이지랑 유저페이지 분화부터
     @GetMapping("/admin")
     public String admin(Model model) {
-        model.addAttribute("msg", "Hello Admin!");
+        model.addAttribute("msg", "어드민입니다");
         return "index";
     }
 
     @GetMapping("/user")
     public String user(Model model) {
-        model.addAttribute("msg", "Hello User!");
+        model.addAttribute("msg", "유저입니다");
         return "index";
     }
 
@@ -29,6 +28,4 @@ public class IndexController {
     public String login() {
         return "login";
     }
-
-
 }

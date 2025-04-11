@@ -12,17 +12,17 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        model.addAttribute("msg", "어드민입니다");
-        return "index";
-    }
-
-    @GetMapping("/user")
-    public String user(Model model) {
-        model.addAttribute("msg", "유저입니다");
-        return "index";
-    }
+//    @GetMapping("/admin")
+//    public String admin(Model model) {
+//        model.addAttribute("msg", "어드민입니다");
+//        return "index";
+//    }
+//
+//    @GetMapping("/user")
+//    public String user(Model model) {
+//        model.addAttribute("msg", "유저입니다");
+//        return "index";
+//    }
 
     @GetMapping("/login")
     public String login() {

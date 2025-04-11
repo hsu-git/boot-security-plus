@@ -19,30 +19,35 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/").permitAll() // '/'는 모두에게 허용이 되어 있다
+                    .requestMatchers("/", "/join", "/login").permitAll() // '/'는 모두에게 허용이 되어 있다
                     .requestMatchers("/admin").hasRole("ADMIN") // ADMIN
                     .requestMatchers("/user").hasRole("USER") // USER
                     .anyRequest().authenticated()
             )
-                .formLogin(Customizer.withDefaults())   //   기본을 쓰자
-                .logout(Customizer.withDefaults());     //   기본을 쓰자
+//                .formLogin(Customizer.withDefaults())   //   기본을 쓰자
+                .formLogin(form -> form
+                    .loginPage("/login").permitAll()
+                )
+//                .logout(Customizer.withDefaults())
+                .logout()
+
 
         return http.build();
     }
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        UserDetails admin = User.withUsername("admin")
-                .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN")
-                .build();
-
-        UserDetails user = User.withUsername("user")
-                .password(passwordEncoder.encode("user"))
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, user);
-    }
+//    @Bean
+//    public InMemoryUserDetailsManager userDetailsManager() {
+//        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        UserDetails admin = User.withUsername("admin")
+//                .password(passwordEncoder.encode("admin"))
+//                .roles("ADMIN")
+//                .build();
+//
+//        UserDetails user = User.withUsername("user")
+//                .password(passwordEncoder.encode("user"))
+//                .roles("USER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(admin, user);
+//    }
 }
